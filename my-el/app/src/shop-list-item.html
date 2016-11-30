@@ -1,0 +1,95 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+
+<dom-module id="shop-list-item">
+
+  <template>
+
+    <style>
+
+      :host {
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+        text-align: center;
+        margin: 0 48px;
+      }
+
+      shop-image {
+        margin: 32px 0 16px;
+      }
+
+      shop-image::before {
+        content: "";
+        display: block;
+        padding-top: 100%;
+      }
+
+      paper-card {
+        margin-bottom: 15px;
+        margin-top: 15px;
+      }
+
+      .title {
+        color: var(--app-primary-color);
+        font-weight: bold;
+      }
+
+      .price {
+        color: var(--app-secondary-color);
+      }
+
+      @media (max-width: 767px) {
+        :host {
+          margin: 0 12px;
+        }
+      }
+
+    </style>
+
+    <paper-card image="[[item.image]]" alt="[[item.title]]">
+      <div class="card-content">
+        <b>[[item.title]]</b>
+      </div>
+        <div class="card-actions">
+        <p>[[_formatPrice(item.price)]]</p>
+      </div>
+      <div class="card-actions">
+        <paper-button>Share</paper-button>
+        <paper-button>Explore!</paper-button>
+      </div>
+    </paper-card>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'shop-list-item',
+
+      properties: {
+
+        item: Object
+
+      },
+
+      _formatPrice: function(price) {
+        return price ? '$' + price.toFixed(2) : '';
+      }
+
+    });
+
+  </script>
+
+</dom-module>
